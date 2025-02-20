@@ -1,0 +1,4 @@
+.DS_Store
+/dbt_env
+/postgres/postgresql_data
+/trino/logs

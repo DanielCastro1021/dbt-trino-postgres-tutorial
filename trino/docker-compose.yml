@@ -1,0 +1,14 @@
+services:
+  trino:
+    container_name: trino
+    hostname: trino
+    image: trinodb/trino:457
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config/config.properties:/etc/trino/config.properties:ro
+      - ./config/jvm.config:/etc/trino/jvm.config:ro
+      - ./catalog/jaffle_shop_db.properties:/etc/trino/catalog/jaffle_shop_db.properties:ro
+    environment:
+      - TRINO_MEMORY_HEAP_HEADROOM_PER_NODE=2048MB
+    restart: always

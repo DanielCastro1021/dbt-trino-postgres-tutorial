@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      POSTGRES_USER: cagri
+      POSTGRES_PASSWORD: 3541
+      POSTGRES_DB: jaffle_shop_db
+      PGPORT: 5433
+    ports:
+      - 5433:5433
+    volumes:
+      - ./postgresql_data:/var/lib/postgresql/data
+      - ./query_init/create_airflow_db.sql:/docker-entrypoint-initdb.d/create_airflow_db.sql:ro
+      - ./query_init/create_jaffle_schema.sql:/docker-entrypoint-initdb.d/create_jaffle_schema.sql:ro
+    restart: always
